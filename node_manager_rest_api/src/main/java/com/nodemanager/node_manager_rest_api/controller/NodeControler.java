@@ -23,6 +23,7 @@ public class NodeControler {
 //        NodeStudentEntity n=NodeStudentEntity1;
 //        NodeStudentEntity1.getContact().setStudent(n);
         Logger logger =LoggerFactory.getLogger(NodeControler.class);
+
         NodeStudentEntity node= NodeService.createNode( NodeStudentEntity1);
         logger.info("Logging MyObject: {}",NodeStudentEntity1);
         return ResponseEntity.status(HttpStatus.OK)

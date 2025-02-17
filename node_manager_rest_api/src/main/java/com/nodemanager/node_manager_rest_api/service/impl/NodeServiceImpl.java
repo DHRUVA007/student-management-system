@@ -11,6 +11,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * Implementation of the NodeService interface.
@@ -39,13 +42,27 @@ public class NodeServiceImpl implements NodeService {
         contact.setEmail(Studentnode.getContact().getEmail());
         contact.setPhone_number(Studentnode.getContact().getPhone_number());
         contact.setStudent(student);
+        student.setContact(contact);
 
-        NodeBlogEntity blog=new NodeBlogEntity();
+        List<NodeBlogEntity> blogs = new ArrayList<>();
+        Studentnode.getBlog().forEach(item ->{
+            NodeBlogEntity blogEntity=new NodeBlogEntity();
+            blogEntity.setBlogDetails(item.getBlogDetails());
+            blogEntity.setStudent(student);
+            blogs.add(blogEntity);
+        });
+
+//        blogs.forEach(item -> {
+//            item.setStudent(student);
+//        });
+        student.setBlog(blogs);
+
+
        // blog.setBlogDetails(Studentnode.getBlog().getblogDetails);
 
-        Studentnode.setContact(contact);
+         //student.setBlog(blogs);
 
-        NodeContactrepo.save(contact);
+        //NodeContactrepo.save(contact);
         Studentrepo.save(student);
         return Studentnode;
     }

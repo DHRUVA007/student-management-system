@@ -32,6 +32,19 @@ payload-
    }
  ] 
 
+3. login
+
+{ "id":10,
+ "firstName": "1039",
+ "lastName": "1039",
+ "contact": {
+ "email": "1039.com",
+ "phone_number": "1039"
+}
+}
+
 remaining workk
 Exception handeling
 DTO
+
+

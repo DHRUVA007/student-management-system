@@ -20,7 +20,6 @@ import java.util.List;
 public class NodeStudentEntity {
     //@Id Annotation makes id as primary key followed by strategy og the id generation
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
     private String firstName;
     private String lastName;

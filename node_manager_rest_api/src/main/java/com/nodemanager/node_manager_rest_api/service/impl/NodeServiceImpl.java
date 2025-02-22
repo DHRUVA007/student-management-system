@@ -35,6 +35,7 @@ public class NodeServiceImpl implements NodeService {
     @Override
     public NodeStudentEntity createNode(NodeStudentEntity Studentnode) {
         NodeStudentEntity student =new NodeStudentEntity();
+        student.setId(Studentnode.getId());
         student.setFirstName(Studentnode.getFirstName());
         student.setLastName(Studentnode.getLastName());
 
@@ -52,19 +53,25 @@ public class NodeServiceImpl implements NodeService {
             blogs.add(blogEntity);
         });
 
-//        blogs.forEach(item -> {
-//            item.setStudent(student);
-//        });
         student.setBlog(blogs);
 
 
-       // blog.setBlogDetails(Studentnode.getBlog().getblogDetails);
+        return Studentrepo.save(student);
+    }
 
-         //student.setBlog(blogs);
+    @Override
+    public NodeStudentEntity login(NodeStudentEntity Studentnode) {
+        NodeStudentEntity student =new NodeStudentEntity();
+        student.setId(Studentnode.getId());
+        student.setFirstName(Studentnode.getFirstName());
+        student.setLastName(Studentnode.getLastName());
 
-        //NodeContactrepo.save(contact);
-        Studentrepo.save(student);
-        return Studentnode;
+        NodeContactEntity contact =new NodeContactEntity();
+        contact.setEmail(Studentnode.getContact().getEmail());
+        contact.setPhone_number(Studentnode.getContact().getPhone_number());
+        contact.setStudent(student);
+        student.setContact(contact);
+        return Studentrepo.save(student);
     }
 }
 

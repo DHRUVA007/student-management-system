@@ -20,14 +20,20 @@ public class NodeControler {
     public NodeService NodeService;
     @PostMapping("/postdata")
     ResponseEntity<NodeStudentEntity> postStudent(@RequestBody NodeStudentEntity NodeStudentEntity1){
-//        NodeStudentEntity n=NodeStudentEntity1;
-//        NodeStudentEntity1.getContact().setStudent(n);
         Logger logger =LoggerFactory.getLogger(NodeControler.class);
-
         NodeStudentEntity node= NodeService.createNode( NodeStudentEntity1);
         logger.info("Logging MyObject: {}",NodeStudentEntity1);
         return ResponseEntity.status(HttpStatus.OK)
                .body(node);
+    }
+
+    @PostMapping("/login")
+    ResponseEntity<NodeStudentEntity> loginStudent(@RequestBody NodeStudentEntity NodeStudentEntity1){
+        Logger logger =LoggerFactory.getLogger(NodeControler.class);
+        NodeStudentEntity node= NodeService.login( NodeStudentEntity1);
+        logger.info("Logging MyObject: {}",NodeStudentEntity1);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(node);
     }
 
 }
